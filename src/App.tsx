@@ -30,18 +30,18 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div id="app-root" className="min-h-screen bg-slate-50 text-slate-800 flex flex-col md:flex-row font-sans">
+      <div id="app-root" className="min-h-screen text-slate-200 flex flex-col md:flex-row font-sans selection:bg-blue-500/30 selection:text-blue-200">
         
         {/* Desktop Sidebar */}
-        <aside id="desktop-sidebar" className="hidden md:flex flex-col w-64 bg-white border-r border-slate-200/60 p-6 space-y-8 shrink-0 relative z-25">
+        <aside id="desktop-sidebar" className="hidden md:flex flex-col w-64 glass-sidebar p-6 space-y-8 shrink-0 relative z-25">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 px-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/15">
-              <Sparkles className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-blue-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/25 border border-white/10">
+              <Sparkles className="w-5 h-5 animate-pulse" />
             </div>
             <div>
-              <span className="font-extrabold text-base text-slate-900 tracking-tight block">
-                ResumeAI
+              <span className="font-extrabold text-base text-white tracking-tight block">
+                RESUME<span className="text-blue-400">.AI</span>
               </span>
               <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block -mt-0.5">
                 ATS Optimizer
@@ -50,7 +50,7 @@ export default function App() {
           </Link>
 
           {/* Navigation Links */}
-          <nav className="flex-1 space-y-1">
+          <nav className="flex-1 space-y-1.5">
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -59,10 +59,10 @@ export default function App() {
                   to={item.to}
                   end={item.end}
                   className={({ isActive }) =>
-                    `flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all duration-200 ${
+                    `flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
                       isActive
-                        ? 'bg-blue-50 text-blue-600'
-                        : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
+                        ? 'glass-nav-item active'
+                        : 'glass-nav-item hover:text-slate-100 hover:bg-white/5'
                     }`
                   }
                 >
@@ -73,29 +73,34 @@ export default function App() {
             })}
           </nav>
 
-          {/* Sidebar Footer */}
-          <div className="pt-4 border-t border-slate-100 text-center">
-            <span className="text-[11px] font-semibold text-slate-400 tracking-wide block">
-              SaaS v1.0.0
-            </span>
+          {/* Sidebar Footer Card */}
+          <div className="glass-card p-4 rounded-2xl border border-white/5 space-y-3">
+            <div className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Current Plan</div>
+            <div className="text-xs font-bold text-white flex items-center gap-1.5">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping" />
+              <span>Pro Architect</span>
+            </div>
+            <button className="w-full py-1.5 px-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-[11px] rounded-lg border border-white/10 transition-all">
+              Upgrade Plan
+            </button>
           </div>
         </aside>
 
         {/* Mobile Header */}
-        <header id="mobile-header" className="md:hidden bg-white border-b border-slate-200/60 px-6 py-4 flex items-center justify-between shrink-0 relative z-30">
+        <header id="mobile-header" className="md:hidden bg-slate-900/60 backdrop-blur-md border-b border-white/10 px-6 py-4 flex items-center justify-between shrink-0 relative z-30">
           <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white">
               <Sparkles className="w-4 h-4" />
             </div>
-            <span className="font-extrabold text-slate-900 tracking-tight">
-              ResumeAI
+            <span className="font-extrabold text-white tracking-tight">
+              RESUME<span className="text-blue-400">.AI</span>
             </span>
           </Link>
 
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 text-slate-600 hover:text-slate-900 transition-all rounded-lg bg-slate-50 border border-slate-200/60"
+            className="p-1.5 text-slate-300 hover:text-white transition-all rounded-lg bg-white/5 border border-white/10"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -105,11 +110,11 @@ export default function App() {
         {mobileMenuOpen && (
           <div
             id="mobile-drawer"
-            className="md:hidden fixed inset-0 bg-slate-950/20 backdrop-blur-sm z-40"
+            className="md:hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40"
             onClick={closeMobileMenu}
           >
             <div
-              className="bg-white w-72 h-full p-6 flex flex-col space-y-6 shadow-2xl relative z-50 animate-slide-in"
+              className="glass-sidebar w-72 h-full p-6 flex flex-col space-y-6 shadow-2xl relative z-50 animate-slide-in"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between">
@@ -117,20 +122,20 @@ export default function App() {
                   <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white">
                     <Sparkles className="w-4 h-4" />
                   </div>
-                  <span className="font-extrabold text-slate-900 tracking-tight">
-                    ResumeAI
+                  <span className="font-extrabold text-white tracking-tight">
+                    RESUME<span className="text-blue-400">.AI</span>
                   </span>
                 </Link>
                 <button
                   type="button"
                   onClick={closeMobileMenu}
-                  className="p-1.5 text-slate-500 hover:text-slate-900"
+                  className="p-1.5 text-slate-400 hover:text-white"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              <nav className="flex-1 space-y-1">
+              <nav className="flex-1 space-y-1.5">
                 {navItems.map((item) => {
                   const Icon = item.icon;
                   return (
@@ -140,10 +145,10 @@ export default function App() {
                       end={item.end}
                       onClick={closeMobileMenu}
                       className={({ isActive }) =>
-                        `flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all ${
+                        `flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
                           isActive
-                            ? 'bg-blue-50 text-blue-600'
-                            : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
+                            ? 'glass-nav-item active'
+                            : 'glass-nav-item hover:text-slate-100 hover:bg-white/5'
                         }`
                       }
                     >

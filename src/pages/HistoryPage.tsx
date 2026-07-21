@@ -77,15 +77,15 @@ export const HistoryPage: React.FC = () => {
     <div id="history-container" className="max-w-6xl mx-auto px-6 py-10 space-y-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Report Archives</h1>
-          <p className="text-slate-500 mt-1">
+          <h1 className="text-3xl font-extrabold text-white tracking-tight">Report Archives</h1>
+          <p className="text-slate-400 mt-1">
             Access past ATS scores and strategic resume evaluations
           </p>
         </div>
 
         <Link
           to="/analyze"
-          className="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl text-sm shadow-md shadow-blue-500/10 transition-all duration-300"
+          className="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-xl text-sm shadow-md shadow-blue-500/10 transition-all duration-300"
         >
           <Upload className="w-4 h-4" />
           <span>Analyze New Resume</span>
@@ -93,25 +93,25 @@ export const HistoryPage: React.FC = () => {
       </div>
 
       {error && (
-        <div className="p-4 bg-rose-50 border border-rose-100 rounded-2xl flex items-center gap-3 text-rose-800 text-sm">
-          <AlertCircle className="w-5 h-5 text-rose-500" />
+        <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-2xl flex items-center gap-3 text-rose-200 text-sm">
+          <AlertCircle className="w-5 h-5 text-rose-400 animate-bounce" />
           <span>{error}</span>
         </div>
       )}
 
       {history.length === 0 ? (
         /* Empty State */
-        <div className="bg-white rounded-3xl border border-slate-100 p-16 shadow-sm text-center max-w-2xl mx-auto">
-          <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 mx-auto mb-6">
+        <div className="glass-card rounded-3xl p-16 text-center max-w-2xl mx-auto border border-white/5">
+          <div className="w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mx-auto mb-6">
             <Clock className="w-8 h-8 animate-pulse" />
           </div>
-          <h3 className="text-xl font-bold text-slate-800">No Analysis History Found</h3>
-          <p className="text-slate-500 mt-2 max-w-sm mx-auto text-sm leading-relaxed">
+          <h3 className="text-xl font-bold text-white">No Analysis History Found</h3>
+          <p className="text-slate-400 mt-2 max-w-sm mx-auto text-sm leading-relaxed">
             Your archives are empty. Upload your PDF or DOCX resume to perform your first automated ATS audit!
           </p>
           <Link
             to="/analyze"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl text-sm shadow-md shadow-blue-500/10 transition-all duration-300 mt-6 transform hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl text-sm shadow-md shadow-blue-500/10 transition-all duration-300 mt-6"
           >
             <Upload className="w-4 h-4" />
             <span>Analyze Resume Now</span>
@@ -128,12 +128,12 @@ export const HistoryPage: React.FC = () => {
               placeholder="Search by candidate name or filename..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 hover:border-slate-300 focus:border-blue-500 rounded-xl text-sm shadow-sm transition-all focus:outline-none"
+              className="w-full pl-11 pr-4 py-3 bg-white/5 border border-white/10 hover:border-white/20 focus:border-blue-500 rounded-xl text-sm text-white placeholder-slate-400 shadow-sm transition-all focus:outline-none"
             />
           </div>
 
           {filteredHistory.length === 0 ? (
-            <div className="text-center py-12 bg-white rounded-2xl border border-slate-100 text-slate-400">
+            <div className="text-center py-12 glass-card rounded-2xl border border-white/5 text-slate-400">
               No reports matched your search.
             </div>
           ) : (
@@ -143,17 +143,17 @@ export const HistoryPage: React.FC = () => {
                 return (
                   <div
                     key={report.id}
-                    className="p-6 bg-white rounded-2xl border border-slate-100/80 shadow-sm hover:shadow-md hover:border-slate-200 transition-all flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
+                    className="p-6 rounded-2xl glass-card glass-card-hover flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
                   >
                     <div className="flex gap-4 items-start">
-                      <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-500 shrink-0 font-bold uppercase text-xs font-mono">
+                      <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 font-bold uppercase text-xs font-mono">
                         {report.fileType}
                       </div>
 
                       <div className="space-y-1">
                         <Link
                           to={`/dashboard?id=${report.id}`}
-                          className="font-extrabold text-slate-800 text-base tracking-tight hover:text-blue-600 transition-all block"
+                          className="font-extrabold text-white text-base tracking-tight hover:text-blue-400 transition-all block"
                         >
                           {analysis.personalInfo.name || 'Candidate'}
                         </Link>
@@ -167,29 +167,29 @@ export const HistoryPage: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-x-8 gap-y-4 w-full md:w-auto border-t md:border-t-0 border-slate-100 pt-4 md:pt-0">
+                    <div className="flex flex-wrap items-center gap-x-8 gap-y-4 w-full md:w-auto border-t md:border-t-0 border-white/5 pt-4 md:pt-0">
                       {/* Scores summary */}
                       <div className="flex gap-6 text-center">
                         <div>
-                          <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">ATS Match</div>
+                          <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">ATS Match</div>
                           <div className={`text-lg font-extrabold mt-0.5 ${
-                            analysis.atsScore >= 80 ? 'text-emerald-500' :
-                            analysis.atsScore >= 50 ? 'text-amber-500' : 'text-rose-500'
+                            analysis.atsScore >= 80 ? 'text-emerald-400' :
+                            analysis.atsScore >= 50 ? 'text-amber-400' : 'text-rose-400'
                           }`}>
                             {analysis.atsScore}%
                           </div>
                         </div>
 
                         <div>
-                          <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Quality</div>
-                          <div className="text-lg font-extrabold mt-0.5 text-blue-600">
+                          <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Quality</div>
+                          <div className="text-lg font-extrabold mt-0.5 text-blue-400">
                             {analysis.resumeScore}%
                           </div>
                         </div>
 
                         <div>
-                          <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Format</div>
-                          <div className="text-lg font-extrabold mt-0.5 text-violet-500">
+                          <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Format</div>
+                          <div className="text-lg font-extrabold mt-0.5 text-violet-400">
                             {analysis.formattingScore}%
                           </div>
                         </div>
@@ -199,14 +199,14 @@ export const HistoryPage: React.FC = () => {
                       <div className="flex gap-2.5 ml-auto">
                         <Link
                           to={`/dashboard?id=${report.id}`}
-                          className="p-2.5 bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-slate-800 border border-slate-200/60 rounded-xl transition-all"
+                          className="p-2.5 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 rounded-xl transition-all"
                           title="View Scorecard"
                         >
                           <ExternalLink className="w-4 h-4" />
                         </Link>
                         <a
                           href={ResumeApi.downloadReportUrl(report.id)}
-                          className="p-2.5 bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-slate-800 border border-slate-200/60 rounded-xl transition-all"
+                          className="p-2.5 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 rounded-xl transition-all"
                           title="Download Markdown Report"
                         >
                           <Download className="w-4 h-4" />
@@ -214,7 +214,7 @@ export const HistoryPage: React.FC = () => {
                         <button
                           type="button"
                           onClick={(e) => handleDelete(report.id, e)}
-                          className="p-2.5 bg-rose-50 hover:bg-rose-100 text-rose-500 hover:text-rose-700 border border-rose-100/60 rounded-xl transition-all"
+                          className="p-2.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 border border-rose-500/20 rounded-xl transition-all"
                           title="Delete Analysis"
                         >
                           <Trash2 className="w-4 h-4" />
