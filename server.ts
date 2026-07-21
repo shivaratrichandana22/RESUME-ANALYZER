@@ -45,6 +45,10 @@ if (isProduction) {
 
 // Start listening on correct port
 const PORT = isProduction ? 3000 : 3001;
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`[Fullstack App] Server running in ${isProduction ? 'production' : 'development'} mode on port ${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`[Fullstack App] Server running in ${isProduction ? 'production' : 'development'} mode on port ${PORT}`);
+  });
+}
+
+export default app;
