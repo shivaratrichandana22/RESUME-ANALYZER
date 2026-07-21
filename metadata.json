@@ -1,0 +1,6 @@
+{
+  "name": "AI Resume Analyzer",
+  "description": "Upload PDF or Word resumes to parse text, compute ATS scores, evaluate keyword densities, find missing skills, and generate downloadable SaaS-quality reports powered by Gemini.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
